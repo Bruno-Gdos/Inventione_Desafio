@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Teste Inventione - Bruno</title>
+    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    
+  </head>
+
+  <body>
+    <div class="content-wrap">
+
+      <header class="header">
+        <h1>Teste <a href="http://inventione.com.br" target="_blank" rel="noopener noreferrer"><img src="inventione.png" style="width: 5.7em; ;"></a> <br>
+          <a href="https://github.com/bruno-gdos" style="text-decoration:none" target="_blank" rel="noopener noreferrer"><b>Bruno Gabriel<b></a></h1>
+
+      </header>
+
+      <form>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome"class="input-padrao" required placeholder="Digite aqui o seu nome"></input>
+
+        <label for="data">Data</label>
+        <input type="date" id="data" class="input-padrao" required placeholder="Digite aqui a sua data de nascimento" max="2030-12-31" min="1900-01-01"></input><br>
+
+        <label for ="idade">Idade</label>
+        <input type="number" id="idade" class="input-padrao" required placeholder="Digite aqui a sua idade"></input>
+
+           
+        <legend>Sexo</legend>
+          <input type="radio" id="ratio" name="sexo" value="Masculino">Masculino<br>
+          <input type="radio" id="ratio1" name="sexo" value="Feminino">Feminino<br>
+
+
+        <br><input type="checkbox" id="painel" onclick="Checkbox()">Habilitar segundo painel</input>
+
+        <div id="segundo-painel" style="display:none">
+          <textarea onkeyup="limite_textarea(this.value)" id="texto" maxlength="1000" required="true" cols="75" rows="5" placeholder="<Esse campo receberá até 10000 chars>"></textarea>
+          <br><span id="cont">10000</span> letras restantes<br>
+          <button type="button" id="botao" onclick="Apresentar()">Apresentar</button>
+        </div>
+
+        <div id = "apresentacao" style="display:none">
+          <h2 class="resultado">Resultado(Com edicao):</h2>
+          <textarea id="resultado" style="resize: none" cols="75" rows="7"></textarea><br>
+
+          <h2 class="resultado">Resultado(Apenas leitura):</h2>
+          <textarea id="resultado2" style="resize: none" cols="75" rows="7" readonly></textarea><br>
+        
+          <button type="button" id="Copiar" onclick="Copia()">Copiar apresentação</button>
+          <button type="button" id="Limpar" onclick="Limpa()">Limpar</button>
+          
+        </div>
+
+      </form>
+
+      
+      
+    </div>
+    
+  </body>
+
+</html>
