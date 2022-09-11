@@ -49,3 +49,16 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+
+
+@media screen and (max-width: 600px) {
+  textarea{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  
+    width: 95%;
+  }
+}
+  
