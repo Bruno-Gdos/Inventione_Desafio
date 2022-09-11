@@ -31,6 +31,16 @@ function formataData(data){
   return `${dia}/${mes}/${ano}`;
 }
 
+const valida = () =>{
+
+  var resultado = Forms();
+
+  if (resultado[0] == "" || resultado[1] == "" || resultado[2] == "" || resultado[3] == "" || resultado[4] == ""){
+    alert("Preencha todos os campos");
+    return;
+}
+}
+
 const Forms = () => {
 
     var resultado = [];
@@ -63,7 +73,13 @@ const Forms = () => {
 
 function Apresentar(){
 
-  var resultado = Forms();
+valida();
+
+
+var resultado = Forms();
+
+
+
 
 
 document.getElementById('apresentacao').style.display = 'block';

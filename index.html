@@ -25,45 +25,52 @@
 
       </header>
 
-      <form class ="form">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome"class="input-padrao" required placeholder="Digite aqui o seu nome"></input>
+      <main>
+        <form class ="form">
+          <div class="input-reto">
+            <div class="input">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome"class="input-padrao" required placeholder="Digite aqui o seu nome"></input>
+            </div>
+            <div class="input">
+              <label for="data">Data</label>
+              <input type="date" id="data" class="input-padrao" required placeholder="Digite aqui a sua data de nascimento" max="2030-12-31" min="1900-01-01"></input><br>
+            </div>
+          </div>
 
-        <label for="data">Data</label>
-        <input type="date" id="data" class="input-padrao" required placeholder="Digite aqui a sua data de nascimento" max="2030-12-31" min="1900-01-01"></input><br>
+          <div class="input">
+            <label for ="idade">Idade</label>
+            <input type="number" id="idade" class="input-padrao" required placeholder="Digite aqui a sua idade"></input>
+          </div>
 
-        <label for ="idade">Idade</label>
-        <input type="number" id="idade" class="input-padrao" required placeholder="Digite aqui a sua idade"></input>
-
-           
-        <legend>Sexo</legend>
-          <input type="radio" id="ratio" name="sexo" value="Masculino">Masculino<br>
-          <input type="radio" id="ratio1" name="sexo" value="Feminino">Feminino<br>
+            
+          <legend>Sexo</legend>
+            <input type="radio" id="ratio" name="sexo" value="Masculino">Masculino<br>
+            <input type="radio" id="ratio1" name="sexo" value="Feminino">Feminino<br>
 
 
-        <br><input type="checkbox" id="painel" onclick="Checkbox()">Habilitar segundo painel</input>
+          <br><input type="checkbox" id="painel" onclick="Checkbox()">Habilitar segundo painel</input>
 
-        <div id="segundo-painel" style="display:none">
-          <textarea onkeyup="limite_textarea(this.value)" id="texto" maxlength="1000" required="true" cols="75" rows="5" placeholder="<Esse campo receberá até 10000 chars>"></textarea>
-          <br><span id="cont">10000</span> letras restantes<br>
-          <button type="submit" id="botao" onclick="Apresentar()">Apresentar</button>
-        </div>
+          <div id="segundo-painel" style="display:none">
+            <textarea style="resize: none" onkeyup="limite_textarea(this.value)" id="texto" maxlength="1000" required="true" cols="75" rows="5" placeholder="<Esse campo receberá até 10000 chars>"></textarea>
+            <br><span id="cont">10000</span> letras restantes<br>
+            <button type="submit" id="botao" onclick="Apresentar()">Apresentar</button>
+          </div>
 
-        <div id = "apresentacao" style="display:none">
-          <h2 class="resultado">Resultado(Com edicao):</h2>
-          <textarea id="resultado" style="resize: none" cols="75" rows="7"></textarea><br>
+          <div id = "apresentacao" style="display:none">
+            <h2 class="resultado">Resultado(Com edicao):</h2>
+            <textarea id="resultado" style="resize: none" cols="75" rows="7"></textarea><br>
 
-          <h2 class="resultado">Resultado(Apenas leitura):</h2>
-          <textarea id="resultado2" style="resize: none" cols="75" rows="7" readonly></textarea><br>
-        
-          <button type="button" id="Copiar" onclick="Copia()">Copiar apresentação</button>
-          <button type="reset" id="Limpar" onclick="Limpa()">Limpar</button>
-          <a href="https://docs.google.com/spreadsheets/d/1rlDxpcVVz6awwCSL52oX5DREyxBmwm3omr7cr26dMNw/edit?usp=sharing" style="text-decoration:none"
-           target="_blank" rel="noopener noreferrer"><button type= "button" id="Planilha">Ver Planilha</button></a> 
-
-        </div>
-
-      </form>
+            <h2 class="resultado">Resultado(Apenas leitura):</h2>
+            <textarea id="resultado2" style="resize: none" cols="75" rows="7" readonly></textarea><br>
+          
+            <button type="button" id="Copiar" onclick="Copia()">Copiar apresentação</button>
+            <button type="reset" id="Limpar" onclick="Limpa()">Limpar</button>
+            <a href="https://docs.google.com/spreadsheets/d/1rlDxpcVVz6awwCSL52oX5DREyxBmwm3omr7cr26dMNw/edit?usp=sharing" style="text-decoration:none"
+            target="_blank" rel="noopener noreferrer"><button type= "button" id="Planilha">Ver Planilha</button></a> 
+          </div>
+        </form>
+      </main>
 
       
       
