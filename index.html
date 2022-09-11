@@ -46,7 +46,7 @@
         <div id="segundo-painel" style="display:none">
           <textarea onkeyup="limite_textarea(this.value)" id="texto" maxlength="1000" required="true" cols="75" rows="5" placeholder="<Esse campo receberá até 10000 chars>"></textarea>
           <br><span id="cont">10000</span> letras restantes<br>
-          <button type="button" id="botao" onclick="Apresentar()">Apresentar</button>
+          <button type="submit" id="botao" onclick="Apresentar()">Apresentar</button>
         </div>
 
         <div id = "apresentacao" style="display:none">
@@ -57,8 +57,10 @@
           <textarea id="resultado2" style="resize: none" cols="75" rows="7" readonly></textarea><br>
         
           <button type="button" id="Copiar" onclick="Copia()">Copiar apresentação</button>
-          <button type="button" id="Limpar" onclick="Limpa()">Limpar</button>
-          
+          <button type="reset" id="Limpar" onclick="Limpa()">Limpar</button>
+          <a href="https://docs.google.com/spreadsheets/d/1rlDxpcVVz6awwCSL52oX5DREyxBmwm3omr7cr26dMNw/edit?usp=sharing" style="text-decoration:none"
+           target="_blank" rel="noopener noreferrer"><button type= "button" id="Planilha">Ver Planilha</button></a> 
+
         </div>
 
       </form>
