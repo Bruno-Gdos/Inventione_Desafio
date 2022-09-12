@@ -1,6 +1,7 @@
 // Seus scripts aqui
 
 
+
 function limite_textarea(valor) {
   quant = 10000;
   total = valor.length;
@@ -36,7 +37,7 @@ const valida = () =>{
   var resultado = Forms();
 
   if (resultado[0] == "" || resultado[1] == "" || resultado[2] == "" || resultado[3] == "" || resultado[4] == ""){
-    alert("Preencha todos os campos");
+    
     return;
 }
 }
@@ -61,7 +62,7 @@ const Forms = () => {
         resultado.push(data);
       }else{
         if (input[indice].value == ""){
-          alert("Preencha todos os campos");
+         swal("Preencha todos os campos", "Preencha todos os campos para continuar", "error");
           return;
         }
         var texto = input[indice].value;
@@ -75,12 +76,7 @@ function Apresentar(){
 
 valida();
 
-
 var resultado = Forms();
-
-
-
-
 
 document.getElementById('apresentacao').style.display = 'block';
 
@@ -90,14 +86,14 @@ document.getElementById('resultado').innerHTML = `Olá me chamo ${resultado[0]},
 O número de caracteres colocados na apresentação foi: ${resultado[4].length}
 E o texto foi: ${resultado[4]}
 
-Gostaria de acrescentar também que, Bruno é um cara muito legal, e que eu recomendo ele para qualquer trabalho, ele merece essa vaga.`;
-
+Gostaria de acrescentar também que, Bruno é um cara muito legal, e além de fazer o que foi pedido, entregou pensando na usabilidade futura do programa, o cadastro das informações do formulário numa planilha do excel, na qual com ajustes podem ser usados para RH, e controle de estoque.`;
+;
 document.getElementById('resultado2').innerHTML = `Olá me chamo ${resultado[0]}, tenho ${resultado[1]} anos, escolhi no formulário a data ${resultado[2]} e sou do sexo ${resultado[3]}.
 
 O número de caracteres colocados na apresentação foi: ${resultado[4].length}
 E o texto foi: ${resultado[4]}
 
-Gostaria de acrescentar também que, Bruno é um cara muito legal, e que eu recomendo ele para qualquer trabalho, ele merece essa vaga.`;
+Gostaria de acrescentar também que, Bruno é um cara muito legal, e além de fazer o que foi pedido, entregou pensando na usabilidade futura do programa, o cadastro das informações do formulário numa planilha do excel, na qual com ajustes podem ser usados para RH, e controle de estoque.`;
 ;
 }
 
@@ -106,20 +102,35 @@ function Copia(){
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   document.execCommand("copy");
-  alert("Apresentação copiada para sua area de transferencia");
+  swal("Texto copiado com sucesso!", "O texto foi copiado para a área de transferência", "success");
 }
 
 function Limpa(){
-  document.getElementById('apresentacao').style.display = 'none';
-  document.getElementById('painel').checked = false;
-  document.getElementById('segundo-painel').style.display = 'none';
-  alert("Formulário limpo, obrigado por usar o formulário");
+  swal({
+    title: "Você tem certeza?",
+    text: "Você não poderá recuperar os dados depois de limpar!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      document.getElementById('form').reset();
+      document.getElementById('apresentacao').style.display = 'none';
+      document.getElementById('painel').checked = false;
+      document.getElementById('segundo-painel').style.display = 'none';
+      swal("Os dados foram limpos com sucesso!", {
+        icon: "success",
+      });
+    }
+  });
+  
 }
 
 const handleSubmit = (event) => {
   resultado = Forms();
   event.preventDefault();
-  alert('Formulário enviado com sucesso');
+  swal("Apresentação criada com sucesso, ".concat(resultado[0] + " !"), "Verifique sua apresentação", "success");
 
   fetch('https://api.sheetmonkey.io/form/jKo1g4cjViWVKkkVpVdriK',{
     method: 'post',
@@ -132,4 +143,27 @@ const handleSubmit = (event) => {
 }
 
 document.querySelector('form').addEventListener('submit', handleSubmit); 
+
+function VerPlanilha(){
+
+  var senha = 123;
+
+  swal("Digite a senha aqui:", {
+    content: {
+      element: "input",
+      attributes: {
+        placeholder: "Digite a senha aqui",
+        type: "password",
+      },
+    },
+  })
+  .then((value) => {
+    if (value == senha){
+      window.open("https://docs.google.com/spreadsheets/d/1rlDxpcVVz6awwCSL52oX5DREyxBmwm3omr7cr26dMNw/edit?usp=sharing", '_blank').focus();
+    }else{
+      swal("Senha incorreta", "A senha está incorreta, tente novamente", "error");
+    }
+  });
+
+}
 

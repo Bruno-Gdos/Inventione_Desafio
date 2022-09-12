@@ -1,81 +1,203 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Teste Inventione - Bruno</title>
-    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+
+    <link rel="icon" type="image/png" href="images/icon.png">
+
+    <link
+      data-require="bootstrap@3.3.7"
+      data-semver="3.3.7"
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script
+      data-require="jquery@*"
+      data-semver="3.1.1"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    ></script>
+    <script
+      data-require="bootstrap@3.3.7"
+      data-semver="3.3.7"
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    ></script>
+    <script
+      data-require="angular.js@1.6.2"
+      data-semver="1.6.2"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      defer
+      src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"
+    ></script>
     <script defer src="script.js"></script>
-    
   </head>
 
   <body>
     <div class="content-wrap">
-
       <header class="header">
-        <h1>Teste <a href="http://inventione.com.br" target="_blank" rel="noopener noreferrer"><img src="inventione.png" style="width: 5.7em; ;"></a> <br>
+        <h1>Teste <a href="http://inventione.com.br" target="_blank" rel="noopener noreferrer"><img src="images/inventione.png" style="width: 5.7em; ;"></a> <br>
           <a href="https://github.com/bruno-gdos" style="text-decoration:none" target="_blank" rel="noopener noreferrer"><b>Bruno Gabriel<b></a></h1>
-
       </header>
-
       <main>
-        <form class ="form">
+        <form id="form" class="form">
           <div class="input-reto">
             <div class="input">
               <label for="nome">Nome</label>
-              <input type="text" id="nome"class="input-padrao" required placeholder="Digite aqui o seu nome"></input>
+              <input
+                type="text"
+                id="nome"
+                class="input-padrao"
+                required
+                placeholder="Digite aqui o seu nome"
+              />
             </div>
             <div class="input">
               <label for="data">Data</label>
-              <input type="date" id="data" class="input-padrao" required placeholder="Digite aqui a sua data de nascimento" max="2030-12-31" min="1900-01-01"></input><br>
+              <input
+                type="date"
+                id="data"
+                class="input-padrao"
+                required
+                placeholder="Digite aqui uma data"
+              /><br />
             </div>
           </div>
 
-          <div class="input">
-            <label for ="idade">Idade</label>
-            <input type="number" id="idade" class="input-padrao" required placeholder="Digite aqui a sua idade"></input>
+          <div class="input idade">
+            <label for="idade">Idade</label>
+            <input
+              type="number"
+              id="idade"
+              class="input-padrao"
+              required
+              placeholder="Digite aqui a sua idade"
+            />
           </div>
 
-            
           <legend>Sexo</legend>
-            <input type="radio" id="ratio" name="sexo" value="Masculino">Masculino<br>
-            <input type="radio" id="ratio1" name="sexo" value="Feminino">Feminino<br>
+          <label class="marksexo"
+            >Masculino
+            <input
+              type="radio"
+              id="ratio"
+              name="sexo"
+              value="Masculino"
+              required
+              checked
+            /><br />
+            <span class="checkmark-sexo"></span>
+          </label>
 
+          <label class="marksexo"
+            >Feminino
+            <input
+              type="radio"
+              id="ratio1"
+              name="sexo"
+              value="Feminino"
+            /><br />
+            <span class="checkmark-sexo"></span>
+          </label>
 
-          <br><input type="checkbox" id="painel" onclick="Checkbox()">Habilitar segundo painel</input>
+          <label class="marksexo"
+            >Outro
+            <input type="radio" id="ratio2" name="sexo" value="Outro" /><br />
+            <span class="checkmark-sexo"></span>
+          </label>
 
-          <div id="segundo-painel" style="display:none">
-            <textarea style="resize: none" onkeyup="limite_textarea(this.value)" id="texto" maxlength="1000" required="true" cols="75" rows="5" placeholder="<Esse campo receberá até 10000 chars>"></textarea>
-            <br><span id="cont">10000</span> letras restantes<br>
-            <button type="submit" id="botao" onclick="Apresentar()">Apresentar</button>
+          <label class="check">
+            Habilitar segundo painel
+            <input type="checkbox" id="painel" onclick="Checkbox()" />
+            <span class="checkmark"></span>
+          </label>
+
+          <div id="segundo-painel" style="display: none">
+            <textarea
+              style="resize: none"
+              onkeyup="limite_textarea(this.value)"
+              id="texto"
+              maxlength="1000"
+              required="true"
+              cols="75"
+              rows="5"
+              placeholder="<Esse campo receberá até 10000 chars>"
+            ></textarea>
+            <br /><span id="cont">10000</span> letras restantes<br />
+            <button
+              type="submit"
+              class="botao botao-apresentar"
+              id="botao"
+              onclick="Apresentar()"
+            >
+              Apresentar
+            </button>
           </div>
 
-          <div id = "apresentacao" style="display:none">
-            <h2 class="resultado">Resultado(Com edicao):</h2>
-            <textarea id="resultado" style="resize: none" cols="75" rows="7"></textarea><br>
+          <div id="apresentacao" style="display: none">
+            <div class="resultado-container">
+              <h2 class="resultado">Resultado (Com edicao):</h2>
+              <textarea
+                id="resultado"
+                style="resize: none"
+                cols="75"
+                rows="7"
+              ></textarea
+              ><br/>
+          </div>
 
-            <h2 class="resultado">Resultado(Apenas leitura):</h2>
-            <textarea id="resultado2" style="resize: none" cols="75" rows="7" readonly></textarea><br>
-          
-            <button type="button" id="Copiar" onclick="Copia()">Copiar apresentação</button>
-            <button type="reset" id="Limpar" onclick="Limpa()">Limpar</button>
-            <a href="https://docs.google.com/spreadsheets/d/1rlDxpcVVz6awwCSL52oX5DREyxBmwm3omr7cr26dMNw/edit?usp=sharing" style="text-decoration:none"
-            target="_blank" rel="noopener noreferrer"><button type= "button" id="Planilha">Ver Planilha</button></a> 
+          <div class="resultado-container">
+            <h2 class="resultado">Resultado (Apenas leitura):</h2>
+            <textarea
+              id="resultado2"
+              style="resize: none"
+              cols="75"
+              rows="7"
+              readonly
+            ></textarea
+            ><br/>
+          </div>
+
+            <div class="botao-inferior">
+              <button
+                type="button"
+                class="botao botao-copiar"
+                id="Copiar"
+                onclick="Copia()"
+              >
+                Copiar apresentação
+              </button>
+              <button
+                type="button"
+                class="botao botao-limpar"
+                id="Limpar"
+                onclick="Limpa()"
+              >
+                Limpar
+              </button>
+              <button
+                type="button"
+                onclick="VerPlanilha()"
+                class="botao botao-planilha"
+                id="Planilha"
+              >
+                Ver Planilha
+              </button>
+            </div>
           </div>
         </form>
       </main>
-
-      
-      
     </div>
-    
   </body>
-
 </html>
