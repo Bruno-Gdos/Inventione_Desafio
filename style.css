@@ -302,6 +302,12 @@ legend{
     border-radius: 5px;
   
   }
+
+    .content-wrap h1 b{
+    font-size: 3rem;
+    color: #fff;
+  
+  }
 }
 
 @media screen and (min-width: 600px) {
