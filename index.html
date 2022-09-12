@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <!-- Parametros da página html -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Teste Inventione - Bruno</title>
-
     <link rel="icon" type="image/png" href="images/icon.png">
 
+    
+    <!-- Import padrão para o desafio. -->
     <link
       data-require="bootstrap@3.3.7"
       data-semver="3.3.7"
@@ -29,31 +32,52 @@
       data-semver="1.6.2"
       src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"
     ></script>
+
+
+    <!-- Pegando a fonte que será utilizada no site -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+
+    <!-- Importando os arquivos CSS -->
+
+      <!-- Import do reset CSS, para resetar os parametros padrões do CSS -->
+    <link rel="stylesheet" href="css/reset.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/checkbox_radio.css" />
+    
+    <!-- Importando a biblioteca sweet para uso de alertas personalizados -->
     <script
       defer
       src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"
     ></script>
+
+    <!-- Importando o arquivo JS -->
     <script defer src="script.js"></script>
   </head>
 
   <body>
     <div class="content-wrap">
+      <!-- Header -->
       <header class="header">
         <h1>Teste <a href="http://inventione.com.br" target="_blank" rel="noopener noreferrer"><img src="images/inventione.png" style="width: 5.7em; ;"></a> <br>
           <a href="https://github.com/bruno-gdos" style="text-decoration:none" target="_blank" rel="noopener noreferrer"><b>Bruno Gabriel<b></a></h1>
       </header>
+
+      <!-- Conteúdo -->
       <main>
+
+        <!-- Formulário -->
         <form id="form" class="form">
+
+          <!-- Nome e data-->
           <div class="input-reto">
             <div class="input">
+              <!-- Nome -->
               <label for="nome">Nome</label>
               <input
                 type="text"
@@ -63,7 +87,9 @@
                 placeholder="Digite aqui o seu nome"
               />
             </div>
+            
             <div class="input">
+              <!-- Data -->
               <label for="data">Data</label>
               <input
                 type="date"
@@ -75,6 +101,7 @@
             </div>
           </div>
 
+          <!-- Idade -->
           <div class="input idade">
             <label for="idade">Idade</label>
             <input
@@ -86,7 +113,10 @@
             />
           </div>
 
+          <!-- Sexo -->
           <legend>Sexo</legend>
+
+          <!-- Masculino -->
           <label class="marksexo"
             >Masculino
             <input
@@ -100,6 +130,7 @@
             <span class="checkmark-sexo"></span>
           </label>
 
+          <!-- Feminino -->
           <label class="marksexo"
             >Feminino
             <input
@@ -111,19 +142,24 @@
             <span class="checkmark-sexo"></span>
           </label>
 
+          <!-- Outros -->
           <label class="marksexo"
             >Outro
             <input type="radio" id="ratio2" name="sexo" value="Outro" /><br />
             <span class="checkmark-sexo"></span>
           </label>
 
+          <!-- CheckBox para habilitar o 2º painel -->
           <label class="check">
             Habilitar segundo painel
             <input type="checkbox" id="painel" onclick="Checkbox()" />
             <span class="checkmark"></span>
           </label>
 
+          <!-- Segundo painel -->
           <div id="segundo-painel" style="display: none">
+           
+           <!-- Text Area apresentação -->
             <textarea
               style="resize: none"
               onkeyup="limite_textarea(this.value)"
@@ -134,7 +170,11 @@
               rows="5"
               placeholder="<Esse campo receberá até 10000 chars>"
             ></textarea>
+
+            <!-- Contador de caracteres -->
             <br /><span id="cont">10000</span> letras restantes<br />
+            
+            <!-- Botão para apresentação do formulario -->
             <button
               type="submit"
               class="botao botao-apresentar"
@@ -145,9 +185,12 @@
             </button>
           </div>
 
+          <!-- Apresentação -->
           <div id="apresentacao" style="display: none">
+            
+            <!-- Resultado com edição -->
             <div class="resultado-container">
-              <h2 class="resultado">Resultado (Com edicao):</h2>
+              <h2 class="resultado">Resultado (Com edição):</h2>
               <textarea
                 id="resultado"
                 style="resize: none"
@@ -155,21 +198,26 @@
                 rows="7"
               ></textarea
               ><br/>
-          </div>
+            </div>
 
-          <div class="resultado-container">
-            <h2 class="resultado">Resultado (Apenas leitura):</h2>
-            <textarea
-              id="resultado2"
-              style="resize: none"
-              cols="75"
-              rows="7"
-              readonly
-            ></textarea
-            ><br/>
-          </div>
+            <!-- Resultado apenas leitura -->
+            <div class="resultado-container">
+              <h2 class="resultado">Resultado (Apenas leitura):</h2>
+              <textarea
+                id="resultado2"
+                style="resize: none"
+                cols="75"
+                rows="7"
+                readonly
+              ></textarea
+              ><br/>
+            </div>
 
+            
+            <!-- Botões inferiores -->
             <div class="botao-inferior">
+
+              <!-- Botão para copiar o formulario -->
               <button
                 type="button"
                 class="botao botao-copiar"
@@ -178,6 +226,8 @@
               >
                 Copiar apresentação
               </button>
+
+              <!-- Botão para limpar o formulario -->
               <button
                 type="button"
                 class="botao botao-limpar"
@@ -186,6 +236,8 @@
               >
                 Limpar
               </button>
+
+              <!-- Botão para ver a planilha -->
               <button
                 type="button"
                 onclick="VerPlanilha()"

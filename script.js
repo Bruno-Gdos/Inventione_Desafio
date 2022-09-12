@@ -2,6 +2,7 @@
 
 
 
+// Script para contar os caracteres do text area.
 function limite_textarea(valor) {
   quant = 10000;
   total = valor.length;
@@ -13,6 +14,7 @@ function limite_textarea(valor) {
   }
 }
 
+// Script para após clicar no checkbox exibir o segundo painel.
 function Checkbox() {
   document.getElementById('segundo-painel').style.display = 'none';
 
@@ -24,6 +26,7 @@ function Checkbox() {
   }
 }
 
+// Script para formatar a data.
 function formataData(data){
   var data = new Date(data);
   dia = (data.getDate()+1).toString().padStart(2, '0'),
@@ -32,6 +35,7 @@ function formataData(data){
   return `${dia}/${mes}/${ano}`;
 }
 
+// Script para validar o forms no qual verifica se algum resultado está vazio.
 const valida = () =>{
 
   var resultado = Forms();
@@ -42,6 +46,7 @@ const valida = () =>{
 }
 }
 
+// Script para pegar todas as informações do forms, separar e retornar em um array.
 const Forms = () => {
 
     var resultado = [];
@@ -72,6 +77,7 @@ const Forms = () => {
     return resultado;
 }
 
+// Script para exibição da apresentação, além de fazer uso das funções de validação e de pegar os dados do forms.
 function Apresentar(){
 
 valida();
@@ -97,6 +103,7 @@ Gostaria de acrescentar também que, Bruno é um cara muito legal, e além de fa
 ;
 }
 
+// Script para o botão de copiar.
 function Copia(){
   var copyText = document.getElementById("resultado2");
   copyText.select();
@@ -105,6 +112,7 @@ function Copia(){
   swal("Texto copiado com sucesso!", "O texto foi copiado para a área de transferência", "success");
 }
 
+// Script para o botão de limpar.
 function Limpa(){
   swal({
     title: "Você tem certeza?",
@@ -127,6 +135,7 @@ function Limpa(){
   
 }
 
+// Script para assim que realizar o submit do forms, ele não atualizar a página e enviar para o Excel.
 const handleSubmit = (event) => {
   resultado = Forms();
   event.preventDefault();
@@ -142,8 +151,7 @@ const handleSubmit = (event) => {
 });
 }
 
-document.querySelector('form').addEventListener('submit', handleSubmit); 
-
+// Script para ver a planilha no Excel, além de solicitar uma senha para acesso do mesmo.
 function VerPlanilha(){
 
   var senha = 123;
@@ -167,3 +175,5 @@ function VerPlanilha(){
 
 }
 
+// Adciona o evento de submit para acionar o evento que realiza o POST para o Excel.
+document.querySelector('form').addEventListener('submit', handleSubmit); 
