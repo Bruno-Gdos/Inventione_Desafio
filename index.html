@@ -97,6 +97,8 @@
                 class="input-padrao"
                 required
                 placeholder="Digite aqui uma data"
+                min="1900-01-01"
+                max="3000-12-31"
               /><br />
             </div>
           </div>
@@ -110,6 +112,8 @@
               class="input-padrao"
               required
               placeholder="Digite aqui a sua idade"
+              min="0"
+              max="150"
             />
           </div>
 
@@ -177,10 +181,10 @@
             
             <!-- Botão para apresentação do formulario -->
             <button
-              type="submit"
+              type="button"
               class="botao botao-apresentar"
               id="botao"
-              onclick="Apresentar()"
+              onclick="valida()"
             >
               Apresentar
             </button>

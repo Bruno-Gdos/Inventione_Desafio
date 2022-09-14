@@ -128,6 +128,10 @@ textarea {
   grid-gap: 5px;
 }
 
+textarea{
+  padding: 10px;
+}
+
 @media screen and (max-width: 600px) {
   textarea {
     -webkit-box-sizing: border-box;

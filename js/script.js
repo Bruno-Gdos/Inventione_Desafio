@@ -28,23 +28,79 @@ function Checkbox() {
 
 // Script para formatar a data.
 function formataData(data){
+  var data = data.split("-");
   var data = new Date(data);
-  dia = (data.getDate()+1).toString().padStart(2, '0'),
+  dia = (data.getDate()).toString().padStart(2, '0'),
   mes = (data.getMonth()+1).toString().padStart(2, '0'),
   ano = data.getFullYear();
+
   return `${dia}/${mes}/${ano}`;
+
 }
 
-// Script para validar o forms no qual verifica se algum resultado está vazio.
+// Script para validar o forms no qual verifica se algum resultado está vazio, além de outros parametros.
 const valida = () =>{
 
   var resultado = Forms();
 
   if (resultado[0] == "" || resultado[1] == "" || resultado[2] == "" || resultado[3] == "" || resultado[4] == ""){
+    swal("Preencha todos os campos", "Preencha todos os campos para continuar", "error");
     
     return;
 }
-}
+  if (resultado[1] <= 0)
+  {
+    swal("Idade inválida", "A idade deve ser maior que 0", "error");
+    return;
+  }
+  if (resultado[1] > 150)
+  {
+    swal("Idade inválida", "A idade deve ser menor que 150", "error");
+    return;
+  }
+
+  if (resultado[2]){
+    var data = resultado[2].split("/");
+    var data = new Date(data[2], data[1] - 1, data[0]);
+    var dataAtual = new Date();
+    var dataAtual = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), dataAtual.getDate());
+    var dataMinima = new Date(1900,01,01);
+
+    if (data < dataMinima){
+      swal("Data inválida", "A data deve ser maior que 01/01/1900", "error");
+      return;
+    }
+    if (data > dataAtual){
+      swal("Data inválida", "A data deve ser menor que a data atual", "error");
+      return;
+    }
+  }
+
+  if (resultado[0]){
+    var nome = resultado[0];
+    if (nome.length > 50){
+      swal("Nome inválido", "O nome deve ter no máximo 50 caracteres", "error");
+      return;
+    }if (nome.length < 3){
+      swal("Nome inválido", "O nome deve ter no mínimo 3 caracteres", "error");
+      return;
+    }if (nome.includes("0") || nome.includes("1") || nome.includes("2") || nome.includes("3") ||
+     nome.includes("4") || nome.includes("5") || nome.includes("6") || nome.includes("7") || 
+     nome.includes("8") || nome.includes("9")){
+      swal("Nome inválido", "O nome não pode conter números", "error");
+      return;
+    }
+  }
+
+  if (ContarPalavras()<1){
+    swal("Texto inválido", "O texto deve ter no mínimo 1 palavra", "error");
+    return;
+  }
+
+  Apresentar();
+  handleSubmit();
+
+  }
 
 // Script para pegar todas as informações do forms, separar e retornar em um array.
 const Forms = () => {
@@ -67,8 +123,7 @@ const Forms = () => {
         resultado.push(data);
       }else{
         if (input[indice].value == ""){
-         swal("Preencha todos os campos", "Preencha todos os campos para continuar", "error");
-          return;
+          
         }
         var texto = input[indice].value;
         resultado.push(texto);
@@ -80,7 +135,7 @@ const Forms = () => {
 // Script para exibição da apresentação, além de fazer uso das funções de validação e de pegar os dados do forms.
 function Apresentar(){
 
-valida();
+
 
 var resultado = Forms();
 
@@ -90,6 +145,8 @@ document.getElementById('apresentacao').style.display = 'block';
 document.getElementById('resultado').innerHTML = `Olá me chamo ${resultado[0]}, tenho ${resultado[1]} anos, escolhi no formulário a data ${resultado[2]} e sou do sexo ${resultado[3]}.
 
 O número de caracteres colocados na apresentação foi: ${resultado[4].length}
+O número de palavras colocadas na apresentação foi: ${ContarPalavras()}
+
 E o texto foi: ${resultado[4]}
 
 Gostaria de acrescentar também que, Bruno é um cara muito legal, e além de fazer o que foi pedido, entregou pensando na usabilidade futura do programa, o cadastro das informações do formulário numa planilha do excel, na qual com ajustes podem ser usados para RH, e controle de estoque.`;
@@ -97,6 +154,8 @@ Gostaria de acrescentar também que, Bruno é um cara muito legal, e além de fa
 document.getElementById('resultado2').innerHTML = `Olá me chamo ${resultado[0]}, tenho ${resultado[1]} anos, escolhi no formulário a data ${resultado[2]} e sou do sexo ${resultado[3]}.
 
 O número de caracteres colocados na apresentação foi: ${resultado[4].length}
+O número de palavras colocadas na apresentação foi: ${ContarPalavras()}
+
 E o texto foi: ${resultado[4]}
 
 Gostaria de acrescentar também que, Bruno é um cara muito legal, e além de fazer o que foi pedido, entregou pensando na usabilidade futura do programa, o cadastro das informações do formulário numa planilha do excel, na qual com ajustes podem ser usados para RH, e controle de estoque.`;
@@ -135,10 +194,9 @@ function Limpa(){
   
 }
 
-// Script para assim que realizar o submit do forms, ele não atualizar a página e enviar para o Excel.
-const handleSubmit = (event) => {
+// Script para assim que realizar o submit do forms, ele não atualizar a página e envia para o Excel.
+const handleSubmit = () => {
   resultado = Forms();
-  event.preventDefault();
   swal("Apresentação criada com sucesso, ".concat(resultado[0] + " !"), "Verifique sua apresentação", "success");
 
   fetch('https://api.sheetmonkey.io/form/jKo1g4cjViWVKkkVpVdriK',{
@@ -147,7 +205,12 @@ const handleSubmit = (event) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body:JSON.stringify({Nome: resultado[0], Idade: resultado[1], Data_Escolhida: resultado[2], Sexo: resultado[3], Texto: resultado[4]})
+    body:JSON.stringify({Nome: resultado[0], 
+      Idade: resultado[1], 
+      Data_Escolhida: resultado[2], 
+      Sexo: resultado[3], 
+      Texto: resultado[4],
+      Palavras_no_Texto: ContarPalavras()})
 });
 }
 
@@ -175,12 +238,8 @@ function VerPlanilha(){
 
 }
 
-// Adciona o evento de submit para acionar o evento que realiza o POST para o Excel.
-document.querySelector('form').addEventListener('submit', handleSubmit); 
 
-
-
-
+// Scipt para contar palavras
 function ContarPalavras() {
  
   // Get the input text value
@@ -209,8 +268,10 @@ function ContarPalavras() {
       || split[i] == "" || split[i] == " " || split[i] == "  " || split[i] == "   " || split[i] == "    " || split[i] == "     "){
         continue;
       }else{
+        if (split[i].includes("a") || split[i].includes("e") || split[i].includes("i") || split[i].includes("o")
+         || split[i].includes("u")){
         count++;
-      }
+        }}
   }
 
   console.log(count);
@@ -218,4 +279,7 @@ function ContarPalavras() {
   // // Display it as output
    document.getElementById("cont2")
        .innerHTML = count;
+   
+       return count;
 }
+
