@@ -162,7 +162,7 @@
            <!-- Text Area apresentação -->
             <textarea
               style="resize: none"
-              onkeyup="limite_textarea(this.value)"
+              onkeyup="limite_textarea(this.value) , ContarPalavras()"
               id="texto"
               maxlength="1000"
               required="true"
@@ -173,6 +173,7 @@
 
             <!-- Contador de caracteres -->
             <br /><span id="cont">10000</span> letras restantes<br />
+            <span id="cont2">0</span> palavras digitadas<br />
             
             <!-- Botão para apresentação do formulario -->
             <button

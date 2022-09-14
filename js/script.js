@@ -177,3 +177,45 @@ function VerPlanilha(){
 
 // Adciona o evento de submit para acionar o evento que realiza o POST para o Excel.
 document.querySelector('form').addEventListener('submit', handleSubmit); 
+
+
+
+
+function ContarPalavras() {
+ 
+  // Get the input text value
+  var palavras = document.getElementById("texto").value;
+
+  // Initialize the word counter
+  var count = 0;
+
+  // Split the words on each
+  // space character
+  var split = palavras.split(' ');
+
+  // Loop through the words and
+  // increase the counter when
+  // each split word is not empty
+  for (var i = 0; i < split.length; i++) {
+      if(split[i] == "a" || split[i] == "e" || split[i] == "i" || split[i] == "o" || split[i] == "u" || split[i] == " "
+      || split[i] == "A" || split[i] == "E" || split[i] == "I" || split[i] == "O" || split[i] == "U" || split[i] == "0" 
+      || split[i] == "1" || split[i] == "2" || split[i] == "3" || split[i] == "4" || split[i] == "5" || split[i] == "6"
+      || split[i] == "7" || split[i] == "8" || split[i] == "9" || split[i] == "@" || split[i] == "#" || split[i] == "$"
+      || split[i] == "%" || split[i] == "&" || split[i] == "*" || split[i] == "(" || split[i] == ")" || split[i] == "-"
+      || split[i] == "_" || split[i] == "+" || split[i] == "=" || split[i] == "{" || split[i] == "}" || split[i] == "["
+      || split[i] == "]" || split[i] == ":" || split[i] == ";" || split[i] == "," || split[i] == "." || split[i] == "<"
+      || split[i] == ">" || split[i] == "?" || split[i] == "/" || split[i] == "|" || split[i] == "!" || split[i] == "~"
+      || split[i] == "`" || split[i] == "^" || split[i] == "´" || split[i] == "¨" || split[i] == "ª" || split[i] == "º"
+      || split[i] == "" || split[i] == " " || split[i] == "  " || split[i] == "   " || split[i] == "    " || split[i] == "     "){
+        continue;
+      }else{
+        count++;
+      }
+  }
+
+  console.log(count);
+
+  // // Display it as output
+   document.getElementById("cont2")
+       .innerHTML = count;
+}
