@@ -256,8 +256,7 @@ function ContarPalavras() {
   // increase the counter when
   // each split word is not empty
   for (var i = 0; i < split.length; i++) {
-      if(split[i] == "a" || split[i] == "e" || split[i] == "i" || split[i] == "o" || split[i] == "u" || split[i] == " "
-      || split[i] == "A" || split[i] == "E" || split[i] == "I" || split[i] == "O" || split[i] == "U" || split[i] == "0" 
+      if(split[i] == " " || split[i] == "0" 
       || split[i] == "1" || split[i] == "2" || split[i] == "3" || split[i] == "4" || split[i] == "5" || split[i] == "6"
       || split[i] == "7" || split[i] == "8" || split[i] == "9" || split[i] == "@" || split[i] == "#" || split[i] == "$"
       || split[i] == "%" || split[i] == "&" || split[i] == "*" || split[i] == "(" || split[i] == ")" || split[i] == "-"
